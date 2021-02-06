@@ -1,12 +1,16 @@
+import java.util.Random;
 
 public class Cat{
     //homework done (test)
-    private double originWeight;
+    private final double numOfEyes = 2;
+    private final Color color;
+    private final double originWeight;
+    private final double minWeight;
+    private final double maxWeight;
+
+    private double foodeaten;
     private double weight;
 
-    private double minWeight;
-    private double maxWeight;
-    private double foodeaten;
 
     /////////////////////////hw3
     private static int count = 0;
@@ -20,6 +24,8 @@ public class Cat{
         maxWeight = 9000.0;
         foodeaten =0;
         count = count+1;
+        int random_double = (int)Math.random() * (3 - 1 + 1) + 1;
+        color = getcolor(random_double);
     }
 
     public void meow(){
@@ -49,6 +55,29 @@ public class Cat{
             System.out.println("Cat is peeing");
         }else isdead();
     }
+
+    ////////////////////////////////
+    public Color getcolor(int i){
+
+        Color col;
+
+        switch (i) {
+            case 1:
+                col = Color.GREEN;
+                break;
+            case 2:
+                col = Color.BLUE;
+                break;
+            case 3:
+                col = Color.BROWN;
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + i);
+        }
+
+        return col;
+    }
+
     ////////////////////////////////
     //hw3extra
     private boolean checkIfDead(){
@@ -100,4 +129,9 @@ public class Cat{
     public double getMinWeight() {
         return minWeight;
     }
+
+    public String getColor(){
+        return color.getColor();
+    }
+
 }

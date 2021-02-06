@@ -47,6 +47,8 @@ public class Loader{
 
         cat[1].pee();
 
+        System.out.println(cat[1].getColor());
+
 
     }
 }
