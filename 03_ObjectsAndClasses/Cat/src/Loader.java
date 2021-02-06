@@ -2,6 +2,10 @@
 public class Loader{
 //homework done
 
+    private static Cat getKitten(){
+        return new Cat(1100.00);
+    }
+
     public static void main(String[] args)
     {
 
@@ -48,6 +52,12 @@ public class Loader{
         cat[1].pee();
 
         System.out.println(cat[1].getColor());
+        System.out.println("-------------------------------------------");
+
+        //////////////hw5//////////////
+        Cat cat8 = getKitten();
+        Cat cat9 = getKitten();
+        Cat cat10= getKitten();
 
 
     }

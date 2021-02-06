@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Cat{
     //homework done (test)
@@ -14,18 +15,33 @@ public class Cat{
 
     /////////////////////////hw3
     private static int count = 0;
-    /////////////////////////
+    /////////////////////////hw5
+    public Cat(double weight){
+        this.weight=weight;
+        originWeight = weight;
+        minWeight = 1000.0;
+        maxWeight = 9000.0;
+        foodeaten =0;
+        count = count+1;
+
+        int ii = ThreadLocalRandom.current().nextInt(1,3+1);
+
+        color = setColorAtRandom(ii);
+    }
 
 
     public Cat(){
+
         weight = 1500.0 + 3000.0 * Math.random();
         originWeight = weight;
         minWeight = 1000.0;
         maxWeight = 9000.0;
         foodeaten =0;
         count = count+1;
-        int random_double = (int)Math.random() * (3 - 1 + 1) + 1;
-        color = getcolor(random_double);
+
+        int ii = ThreadLocalRandom.current().nextInt(1,3+1);
+
+        color = setColorAtRandom(ii);
     }
 
     public void meow(){
@@ -57,7 +73,7 @@ public class Cat{
     }
 
     ////////////////////////////////
-    public Color getcolor(int i){
+    public Color setColorAtRandom(int i){
 
         Color col;
 
@@ -92,8 +108,7 @@ public class Cat{
     /////////////////////////////////
 
 
-    public Double getWeight()
-    {
+    public Double getWeight(){
         return weight;
     }
 
