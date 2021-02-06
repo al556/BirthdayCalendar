@@ -8,6 +8,9 @@ public class Cat{
     private double maxWeight;
     private double foodeaten;
 
+    /////////////////////////hw3
+    private static int count = 0;
+    /////////////////////////
 
 
     public Cat(){
@@ -16,30 +19,49 @@ public class Cat{
         minWeight = 1000.0;
         maxWeight = 9000.0;
         foodeaten =0;
+        count = count+1;
     }
 
     public void meow(){
-        weight = weight - 1;
-        System.out.println("Meow");
+        if (!checkIfDead()) {
+            weight = weight - 1;
+            System.out.println("Meow");
+        }else isdead();
     }
-
 
     public void feed(Double amount){
-        weight = weight + amount;
-        foodeaten = foodeaten + amount;
+        if (!checkIfDead()) {
+            weight = weight + amount;
+            foodeaten = foodeaten + amount;
+        }else isdead();
     }
 
-    /////////////////////////////////
+
+    public void drink(Double amount){
+        if (!checkIfDead()) {
+            weight = weight + amount;
+        }else isdead();
+    }
+
     public void pee(){
-        weight = weight - 1;
-        System.out.println("Cat is peeing");
+        if (!checkIfDead()) {
+            weight = weight - 1;
+            System.out.println("Cat is peeing");
+        }else isdead();
     }
     ////////////////////////////////
-
-    public void drink(Double amount)
-    {
-        weight = weight + amount;
+    //hw3extra
+    private boolean checkIfDead(){
+        String s = getStatus();
+        if(s=="Dead") return true;
+        else return false;
     }
+
+    private void isdead(){
+        System.out.println("The cat is dead!");
+    }
+    /////////////////////////////////
+
 
     public Double getWeight()
     {
@@ -61,13 +83,15 @@ public class Cat{
         }
     }
 
-    ////////////////////////
+    ////////////////////////hw3
+    public static int getCount(){
+        return count;
+    }
 
     public double getTotalFoodEaten(){
        // return weight-originWeight;
         return foodeaten;
     }
-
 
     public double getMaxWeight() {
         return maxWeight;

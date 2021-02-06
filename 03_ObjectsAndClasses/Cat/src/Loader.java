@@ -13,6 +13,7 @@ public class Loader{
             cat[i]=new Cat();
         }
 
+        System.out.println("We created "+Cat.getCount()+" cats");
 
         for (int i=0;i<7;i++){
             System.out.println("Cat "+(i+1)+" weight:"+cat[i].getWeight());
@@ -44,16 +45,7 @@ public class Loader{
 
         System.out.println("-------------------------------------------");
 
-        //hw2test
-        cat[3].feed((double) 150);
-        cat[3].feed((double) 100);
-        System.out.println("Cat 2 weight "+cat[3].getWeight() );
-        System.out.println("Cat 2 eaten " +cat[3].getTotalFoodEaten());
-
-        cat[3].pee();
-        cat[3].pee();
-        System.out.println("Cat 2 weight "+cat[3].getWeight() );
-        System.out.println("Cat 2 eaten " +cat[3].getTotalFoodEaten());
+        cat[1].pee();
 
 
     }
