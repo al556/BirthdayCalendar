@@ -42,6 +42,19 @@ public class Loader{
 
         System.out.println("Cat 2 is "+cat[1].getStatus());
 
+        System.out.println("-------------------------------------------");
+
+        //hw2test
+        cat[3].feed((double) 150);
+        cat[3].feed((double) 100);
+        System.out.println("Cat 2 weight "+cat[3].getWeight() );
+        System.out.println("Cat 2 eaten " +cat[3].getTotalFoodEaten());
+
+        cat[3].pee();
+        cat[3].pee();
+        System.out.println("Cat 2 weight "+cat[3].getWeight() );
+        System.out.println("Cat 2 eaten " +cat[3].getTotalFoodEaten());
+
 
     }
 }
