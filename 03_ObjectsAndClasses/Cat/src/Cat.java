@@ -1,6 +1,6 @@
 
-public class Cat
-{
+public class Cat{
+    //homework done (test)
     private double originWeight;
     private double weight;
 
@@ -51,5 +51,16 @@ public class Cat
         else {
             return "Playing";
         }
+    }
+
+    ////////////////////////
+
+
+    public double getMaxWeight() {
+        return maxWeight;
+    }
+
+    public double getMinWeight() {
+        return minWeight;
     }
 }
