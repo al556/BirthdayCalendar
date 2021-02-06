@@ -12,6 +12,8 @@ public class Cat{
     private double foodeaten;
     private double weight;
 
+    //hw6
+    private Okras okras;
 
     /////////////////////////hw3
     private static int count = 0;
@@ -25,9 +27,12 @@ public class Cat{
         count = count+1;
 
         int ii = ThreadLocalRandom.current().nextInt(1,3+1);
+        int iii = ThreadLocalRandom.current().nextInt(1,6+1);
 
         color = setColorAtRandom(ii);
+        okras = setOkrasAtRandom(iii);
     }
+
 
 
     public Cat(){
@@ -40,8 +45,10 @@ public class Cat{
         count = count+1;
 
         int ii = ThreadLocalRandom.current().nextInt(1,3+1);
+        int iii = ThreadLocalRandom.current().nextInt(1,6+1);
 
         color = setColorAtRandom(ii);
+        okras = setOkrasAtRandom(iii);
     }
 
     public void meow(){
@@ -93,6 +100,38 @@ public class Cat{
 
         return col;
     }
+
+    public Okras setOkrasAtRandom(int i){
+
+        Okras okr;
+
+        switch (i) {
+            case 1:
+                okr = Okras.BLACK;
+                break;
+            case 2:
+                okr = Okras.WHITE;
+                break;
+            case 3:
+                okr = Okras.STRIPES;
+                break;
+            case 4:
+                okr = Okras.ORANGE;
+                break;
+            case 5:
+                okr = Okras.GREY;
+                break;
+            case 6:
+                okr = Okras.SPOTTED;
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + i);
+        }
+
+        return okr;
+    }
+
+
 
     ////////////////////////////////
     //hw3extra
@@ -148,5 +187,16 @@ public class Cat{
     public String getColor(){
         return color.getColor();
     }
+
+
+    //////////////////hw6
+    public Okras getOkras() {
+        return okras;
+    }
+
+    public void setOkras(Okras okras) {
+        this.okras = okras;
+    }
+
 
 }
