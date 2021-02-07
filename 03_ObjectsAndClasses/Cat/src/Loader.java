@@ -59,10 +59,10 @@ public class Loader{
         Cat cat10= getKitten();
 
         ///////////////////////////hw7
-        //Cat cat11 = (Cat) cat8.clone();
+        Cat cat11 = (Cat) cat8.clone();
 
-        //System.out.println(cat8.getWeight());
-        //System.out.println(cat11.getWeight());
+        System.out.println(cat8.getWeight());
+        System.out.println(cat11.getWeight());
 
 
     }

@@ -15,7 +15,7 @@ public class Car
             ":\n\tВысота: " + height + " мм\n\tМасса: " + weight + " кг";
     }
 
-    ////////////////////////hw6
+    ////////////////////hw6
     public String getNumber() {return number;}
     public void setNumber(String number){this.number = number;}
 
