@@ -1,7 +1,8 @@
+import java.io.*;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Cat{
+public class Cat implements Cloneable,Serializable{
     //homework done (test)
     private final double numOfEyes = 2;
     private final Color color;
@@ -77,6 +78,32 @@ public class Cat{
             weight = weight - 1;
             System.out.println("Cat is peeing");
         }else isdead();
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException{
+
+        Object obj = null;
+
+        try{
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(baos);
+            oos.writeObject(this);
+            oos.close();
+
+            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+            ObjectInputStream ois = new ObjectInputStream(bais);
+            obj = ois.readObject();
+            ois.close();
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }catch (ClassNotFoundException ee){
+            ee.printStackTrace();
+        }
+
+        return obj;
     }
 
     ////////////////////////////////

@@ -6,8 +6,7 @@ public class Loader{
         return new Cat(1100.00);
     }
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) throws CloneNotSupportedException {
 
         //hw1.1
 
@@ -59,6 +58,11 @@ public class Loader{
         Cat cat9 = getKitten();
         Cat cat10= getKitten();
 
+        ///////////////////////////hw7
+        //Cat cat11 = (Cat) cat8.clone();
+
+        //System.out.println(cat8.getWeight());
+        //System.out.println(cat11.getWeight());
 
 
     }
