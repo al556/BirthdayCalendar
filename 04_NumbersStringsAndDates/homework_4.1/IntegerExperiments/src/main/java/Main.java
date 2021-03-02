@@ -4,7 +4,7 @@ public class Main {
     Container container = new Container();
     container.count += 7843;
 
-    int sum = sumDigits(7843);
+    int sum = sumDigits(7845);
 
     System.out.println(sum);
   }
@@ -21,6 +21,22 @@ public class Main {
 
   public static int sumDigits(Integer number) {
     //@TODO: write code here and delete TODO line
-    return 0;
+
+    if(number == null){return -1;}
+
+    char[] temp = String.valueOf(number).toCharArray();
+
+    int tempnum = 0;
+
+    for (int i = 0; i<temp.length;i++){
+
+      int j = Character.getNumericValue(temp[i]);
+      tempnum = tempnum+j;
+
+    }
+
+    //System.out.println(tempnum);
+
+    return tempnum;
   }
 }
