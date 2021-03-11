@@ -2,11 +2,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/*
-    temp = text.replaceAll("[^a-zA-Z\\s\\'\\-\\’]", "");
-    temp = temp.replaceAll("-", " ");
-    temp = temp.replaceAll(" +", " ");
-*/
+
 
 public class Main {
 

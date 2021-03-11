@@ -1,5 +1,12 @@
 public class Main {
 
+    /*
+    temp = text.replaceAll("[^a-zA-Z\\s\\'\\-\\’]", "");
+    temp = temp.replaceAll("-", " ");
+    temp = temp.replaceAll(" +", " ");
+    String s = "[а-яА-Я-\\s+]+";//\\-?
+*/
+
     public static void main(String[] args) {
 
     }
