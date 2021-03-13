@@ -4,7 +4,7 @@ public class Main {
     Container container = new Container();
     container.count += 7843;
 
-    int sum = sumDigits(7845);
+    int sum = sumDigits(8-5-3);
 
     System.out.println(sum);
   }
@@ -28,10 +28,27 @@ public class Main {
 
     int tempnum = 0;
 
+    boolean isNegative = false;
+
     for (int i = 0; i<temp.length;i++){
 
-      int j = Character.getNumericValue(temp[i]);
-      tempnum = tempnum+j;
+      if (temp[i]=='-'){
+        isNegative=true;
+
+      }else {
+        if(isNegative){
+          int j = Character.getNumericValue(temp[i]);
+          tempnum = tempnum-j;
+          isNegative=false;
+        }
+        else {
+          int j = Character.getNumericValue(temp[i]);
+          tempnum = tempnum+j;
+        }
+
+
+      }
+
 
     }
 
