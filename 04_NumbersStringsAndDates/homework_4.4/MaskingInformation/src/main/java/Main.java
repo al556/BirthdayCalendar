@@ -1,8 +1,10 @@
+import java.util.ArrayList;
+
 public class Main {
 
     public static void main(String[] args) {
 
-        String d = searchAndReplaceDiamonds("Номер кредитной карты <1234> 4008 1234 <<5678>> 8912","***");
+        String d = searchAndReplaceDiamonds("Номер кредитной< карты <1234> 4008 1234 <<5678>> 8912","***");
 
         System.out.println(d);
     }

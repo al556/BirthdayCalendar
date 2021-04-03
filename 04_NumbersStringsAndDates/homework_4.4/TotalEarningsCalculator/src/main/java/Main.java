@@ -3,10 +3,30 @@ import java.util.ArrayList;
 public class Main {
   public static void main(String[] args) {
 
-    String text = "Вася заработал 5000, Петя - 7563 рубля, а Маша - 30000";
+    String text = "1Вася зар5аботал 5000, Петя - 7563 рубля, а Маша - 30000";
     //TODO: напишите ваш код, результат вывести в консоль
 
+    int totalSumm = 0;
+    int current = 0;
 
+    int textlength = text.length();
+    int i = 0;
+
+    while (i<textlength)
+    {
+      if (isNumber(text.charAt(i)))
+      current = (current) * 10 + Integer.parseInt(String.valueOf(text.charAt(i)));
+      else
+      {
+        totalSumm = totalSumm + current;
+        current = 0;
+      }
+      i++;
+    }
+
+    System.out.println(totalSumm);
+
+/*
 
 
     int sum = 0;
@@ -53,6 +73,10 @@ public class Main {
 
     }
 
+    for (String s:numerics){
+        System.out.println("--"+s);
+    }
+
     //C//////////////////
     for (int j=0;j<=numerics.size()-1;j++){
 
@@ -60,9 +84,9 @@ public class Main {
 
     }
     System.out.println(sum);
-
+/*/
   }
-
+ /*
   /////////////////methods-for-work///////////////////////////////
   public static String cleanString(String s){
     String tempString = "";
@@ -74,6 +98,7 @@ public class Main {
     return tempString;
   }
 
+
   public static boolean containNumber(String s){
     boolean bool = false;
 
@@ -81,7 +106,7 @@ public class Main {
       if(isNumber(i)){bool=true;}
     }
     return bool;
-  }
+  }*/
 
   public static boolean isNumber(Character ch){
     if(ch=='0'){return true;}
@@ -93,7 +118,10 @@ public class Main {
     else if(ch=='6'){return true;}
     else if(ch=='7'){return true;}
     else if(ch=='8'){return true;}
-    else {return ch == '9';}
-  }
+    else {return ch == '9';
+    }
+
 /////////////////////////////////////////////////////////////
+
+  }
 }
