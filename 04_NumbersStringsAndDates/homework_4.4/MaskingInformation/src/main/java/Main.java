@@ -1,15 +1,91 @@
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class Main {
 
     public static void main(String[] args) {
+        System.out.println("[My Method]");
 
-        String d = searchAndReplaceDiamonds("Номер кредитной< карты <1234> 4008 1234 <<5678>> 8912","***");
+        String d = searchAndReplaceDiamonds2("Ном>ер кредитной карты <1234> 4008 1234 <<5678>> 86>7>876879<12","***");
 
-        System.out.println(d);
+        System.out.println("     "+d);
+        System.out.println();
+        String e = searchAndReplaceDiamonds2("Ном>ер кред<ит<н<ой карты <1234> 4008 1234 <<5678>> 867876879<12","***");
+
+        System.out.println("     "+e);
+        System.out.println();
+        System.out.println("====================================");
+        System.out.println("[Oficial Method]");
+
+        String f = searchAndReplaceDiamonds("Ном>ер кредитной карты <1234> 4008 1234 <<5678>> 86>7>876879<12","***");
+
+        System.out.println("     "+f);
+        System.out.println();
+        String g = searchAndReplaceDiamonds("Ном>ер кред<ит<н<ой карты <1234> 4008 1234 <<5678>> 867876879<12","***");
+
+        System.out.println("     "+g);
+
+
+    }
+
+    public enum State {
+        OPEN,
+        SECRET,
+        ERROR
     }
 
     public static String searchAndReplaceDiamonds(String text, String placeholder) {
+        if (text.length() <= 0) {
+            return "";
+        }
+
+        StringBuilder result = new StringBuilder();
+
+        Stack<Character> stack = new Stack<>();
+        State state = State.OPEN;
+
+        for (int i = 0; i < text.length(); i++) {
+            if (state == State.OPEN) {
+                if (text.charAt(i) != '<' && text.charAt(i) != '>') {
+                    result.append(text.charAt(i));
+                }
+                if (text.charAt(i) == '<') {
+                    state = State.SECRET;
+                    stack.push(text.charAt(i));
+                    continue;
+                }
+                if (text.charAt(i) == '>') {
+                    state = State.ERROR;
+                }
+            }
+            if (state == State.SECRET) {
+                if (text.charAt(i) == '<') {
+                    stack.push(text.charAt(i));
+                }
+                if (text.charAt(i) == '>') {
+                    if (stack.empty()) {
+                        state = State.ERROR;
+                    } else {
+                        stack.pop();
+                        if (stack.empty()) {
+                            state = State.OPEN;
+                            result.append(placeholder);
+                        }
+                    }
+                }
+            }
+            if (state == State.ERROR) {
+                return "Error";
+            }
+        }
+        if (state == State.SECRET) {
+            return "Error";
+        }
+        return result.toString();
+    }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+    public static String searchAndReplaceDiamonds2(String text, String placeholder) {
         // TODO: реализовать метод, если в строке нет <> - вернуть строку без изменений
 
 
@@ -21,6 +97,9 @@ public class Main {
         ///////////////////
         //check for < at the end
 
+        System.out.println("text " + text);
+
+        String tail = "";
         String body = "";
         String head = "";
 
@@ -34,14 +113,27 @@ public class Main {
                 body = text;
                 break;
             }else {
+                //System.out.println("B "+i);
                 head = "";
                 body = text;
-                break;
             }
          }
 
-        System.out.println(head);
-        System.out.println(body);
+
+        for (int i =0;i<body.length();i++){
+            if(body.charAt(i)=='>'){
+                tail = body.substring(0,i+1);
+                body = body.substring(i+1);
+                break;
+            }else if(text.charAt(i)=='<'){
+                tail = "";
+                body = body;
+                break;
+            }else {
+                tail = "";
+                body = body;
+            }
+        }
 
         //////////////////
 
@@ -61,19 +153,149 @@ public class Main {
         else {s=pervayaSkobka;}
 
         for (int i =0; i<=s;i++){
-
             ourstring = oneReplace(ourstring,placeholder);
-
         }
 
 
-        //System.out.println("------------------------------");
+        String clean1 = cleanStringsFromWildLeftSkobkas(ourstring);
+        String clean2 = cleanStringsFromWildRightSkobkas(clean1);
 
-
-
-        return ourstring+ head;
+        return tail+clean2+ head;
 
     }
+
+    ///////////////////////////////////////////////////////////////////
+    private static String cleanStringsFromWildLeftSkobkas(String ourstring) {
+        //<
+
+        int j = 0;
+
+        ArrayList<String> strings = new ArrayList<>();
+        ArrayList<String> cleanstrings = new ArrayList<>();
+
+        for(int i = 0; i<ourstring.length()-2; i++){
+
+            if((ourstring.charAt(i)=='*')&&(ourstring.charAt(i+1)=='*')&&(ourstring.charAt(i+2)=='*')){
+                strings.add(ourstring.substring(j,i));
+                j=i;
+            }
+        }
+        strings.add(ourstring.substring(j));
+
+
+        for(int i = 0; i<strings.size();i++){
+            String s = strings.get(i);
+
+            if(s.indexOf('<')==-1){
+                cleanstrings.add(s);
+            }
+
+            else if(s.indexOf('<')!=0) {
+                cleanstrings.add(cleanLeft(s));
+
+            }
+
+
+
+        }
+
+        String tempstring = "";
+
+        for(String t:cleanstrings){
+            tempstring=tempstring+t;
+        }
+
+
+        return tempstring;
+
+
+    }
+
+
+    private static String cleanLeft(String ourstring) {
+
+        String st="";
+
+            for (int k = 0; k < ourstring.length(); k++) {
+
+                if (ourstring.charAt(k) == '<') {
+                    st=ourstring.substring(0,k);
+                    break;
+                }
+
+            }
+
+        return st;
+    }
+
+
+
+    ///////////////////////////////////////////////////////////////////
+    private static String cleanStringsFromWildRightSkobkas(String ourstring) {
+        //>
+
+        int j = 0;
+
+        ArrayList<String> strings = new ArrayList<>();
+        ArrayList<String> cleanstrings = new ArrayList<>();
+
+        for(int i = 0; i<ourstring.length()-2; i++){
+
+            if((ourstring.charAt(i)=='*')&&(ourstring.charAt(i+1)=='*')&&(ourstring.charAt(i+2)=='*')){
+                strings.add(ourstring.substring(j,i));
+                j=i;
+
+
+            }
+
+
+
+        }
+        strings.add(ourstring.substring(j));
+
+
+
+        for(int i = 0; i<strings.size();i++){
+            String s = strings.get(i);
+
+            if(s.indexOf('>')==-1){
+                cleanstrings.add(s);
+            }
+
+            else if(s.indexOf('>')!=0) {
+                cleanstrings.add(cleanRight(s));
+            }
+        }
+
+        String tempstring = "";
+
+        for(String t:cleanstrings){
+            tempstring=tempstring+t;
+        }
+
+
+        return tempstring;
+    }
+
+
+    private static String cleanRight(String ourstring) {
+
+        String st="";
+
+        for (int k = ourstring.length()-1; k >=0; k--) {
+            if (ourstring.charAt(k) == '>') {
+                st=ourstring.substring(k+1);
+                break;
+            }
+        }
+        return "***"+st;
+    }
+
+
+
+
+
+
 
     //////////////////////////////////////////////////////////////////
     public static String oneReplace(String text, String placeholder){
@@ -91,14 +313,6 @@ public class Main {
              }
          }
 
-        //for (int i = 0 ;i<=text.length()-1;i++){
-        //    if(text.charAt(i)=='<'){
-
-         //      pervayaSkobka=i;
-
-        //    break;
-        //    }
-        //}
 
 
         if (pervayaSkobka==-1){
