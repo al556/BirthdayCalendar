@@ -9,6 +9,29 @@ public class TwoDimensionalArray {
         // [ , X,  ]
         // [X,  , X]
 
-        return new char[0][0];
+        char[][] chars = new char[size][size];//irow jcolumn
+
+        ///fill char
+
+        for (int i = 0 ; i<size; i++){
+            for (int j = 0 ; j<size; j++){
+                chars[i][j]=' ';
+            }
+        }
+
+
+        // do x's
+        int start = 0;
+        int end = size-1;
+
+        for (int i=0;i<size;i++){
+
+            chars[i][start] = 'X';
+            chars[i][end] = 'X';
+            start++;
+            end--;
+        }
+
+        return chars;
     }
 }
