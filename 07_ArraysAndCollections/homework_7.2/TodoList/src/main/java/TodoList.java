@@ -46,7 +46,10 @@ public class TodoList {
 
     public ArrayList<String> getTodos() {
         // TODO: вернуть список дел
-        return listOfStuff;
+        //
+        ArrayList<String> todos = (ArrayList<String>)listOfStuff.clone();
+
+        return todos;
     }
 
 
