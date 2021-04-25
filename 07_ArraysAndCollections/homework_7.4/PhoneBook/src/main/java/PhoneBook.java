@@ -4,7 +4,7 @@ import java.util.TreeSet;
 
 public class PhoneBook {
 
-    HashMap<String, String> phonesMap = new HashMap<String, String>();
+    private HashMap<String, String> phonesMap = new HashMap<String, String>();
 
 
     public void addContact(String phone, String name) {
@@ -47,11 +47,13 @@ public class PhoneBook {
 
             if (pair.getValue()==name){
                 treeSet.add(pair.getValue()+" - "+pair.getKey());
+
+
+
             }
         }
         return treeSet;
     }
-
 
     public Set<String> getAllContacts() {
         // формат одного контакта "Имя - Телефон"
@@ -62,14 +64,21 @@ public class PhoneBook {
                 treeSet.add(pair.getValue()+" - "+pair.getKey());
         }
 
-        for (String s: treeSet){
-            System.out.println(s);
-        }
-
         return treeSet;
     }
 
 
+    /////////
+    public boolean containName(String name){//value
+        return phonesMap.containsValue(name);
+    }
+
+    public boolean containNumber(String number){//key
+        return phonesMap.containsKey(number);
+    }
+
+
+    ////////////////////////////////////////////////////
     public boolean checkIfNameSurname(String str){
 
         if (str.matches("[а-яА-Я-\\s+]+")){
@@ -81,10 +90,10 @@ public class PhoneBook {
     public boolean checkIfPhoneString(String str){
 
         if (str.matches("^\\s?((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?\\s?")){
-            System.out.println("2");
+
             return true;}
         else{
-            System.out.println("22");
+
             return false;}
     }
 
