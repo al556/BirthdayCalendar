@@ -1,16 +1,29 @@
 public abstract class Client {
 
+    double money = 0;
+
     public double getAmount() {
-        //TODO: реализуйте метод и удалите todo
-        return 0;
+        return money;
     }
 
     public void put(double amountToPut) {
-        //TODO: реализуйте метод и удалите todo
+        if(amountToPut>=0){
+            money += amountToPut;
+        }
+
     }
 
     public void take(double amountToTake) {
-        //TODO: реализуйте метод и удалите todo
+
+        if(amountToTake>0&&amountToTake<=money){
+            money -= amountToTake;
+        }
     }
+
+    //////////////////////
+    public double getExtraPercent(double sum,double percent){
+        return (sum/100)*percent;
+    }
+
 
 }
